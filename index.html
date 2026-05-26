@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>txt.mac.hm</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div id="app" class="app">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h1>txt</h1>
+          <button id="importBtn" class="btn">Import</button>
+          <button id="sidebarToggleBtn" class="icon-btn sidebar-close-btn" title="Close sidebar" aria-label="Close sidebar">✕</button>
+          <input id="fileInput" type="file" multiple accept=".txt,.md,.csv,.json,.docx" hidden />
+        </div>
+
+        <label class="search-wrap">
+          <input id="searchInput" type="text" placeholder="Search documents" />
+        </label>
+
+        <div id="dropZone" class="drop-zone">
+          Drop files here
+          <span>txt, md, csv, json, docx</span>
+        </div>
+
+        <ul id="docList" class="doc-list"></ul>
+      </aside>
+
+      <main id="reader" class="reader">
+        <button id="sidebarOpenBtn" class="icon-btn sidebar-open-btn" title="Open sidebar" aria-label="Open sidebar">☰</button>
+        <header id="readerHeader" class="reader-header chrome">
+          <div>
+            <h2 id="docTitle">No document selected</h2>
+            <p id="docMeta"></p>
+          </div>
+          <div class="stats">
+            <p id="wordCount">Word 0 / 0</p>
+            <p id="wpmStat">320 WPM</p>
+          </div>
+        </header>
+
+        <section class="focus-area">
+          <div class="focus-card">
+            <div class="center-line"></div>
+            <div id="wordLine" class="word-line" aria-live="polite">
+              <span id="prefix"></span><span id="pivot" class="pivot"></span><span id="suffix"></span>
+            </div>
+          </div>
+        </section>
+
+        <footer id="readerFooter" class="controls chrome">
+          <div class="controls-row">
+            <div class="transport">
+              <button id="backBtn" class="icon-btn" title="Back 10 words">-10</button>
+              <button id="playBtn" class="icon-btn" title="Play/Pause">Play</button>
+              <button id="nextBtn" class="icon-btn" title="Forward 10 words">+10</button>
+            </div>
+            <p id="progressText">0%</p>
+          </div>
+
+          <input id="progressSlider" type="range" min="0" max="1" step="1" value="0" />
+
+          <div class="speed-wrap">
+            <label for="speedSlider">Speed: <span id="speedValue">320</span> WPM</label>
+            <input id="speedSlider" type="range" min="120" max="900" step="10" value="320" />
+          </div>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
