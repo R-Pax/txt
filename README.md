@@ -16,19 +16,24 @@ I'm currently only interested on the web version since I feel like the idea of r
 - `.txt`
 - `.md`
 - `.csv`
-- `.json` 
-- `.docx` 
+- `.json`
+- `.docx`
 
 ## For local use
 
-```git clone https://github.com/R-Pax/txt.git txt
-cd txt```
+1. Clone the repository:
+```bash
+git clone https://github.com/R-Pax/txt.git txt
+cd txt
+```
+
+2. Start a local server:
 ```bash
 cd web
 python3 -m http.server 4173
 ```
 
-Open `http://localhost:4173`.
+3. Open `http://localhost:4173`.
 
 ## Notes
 
