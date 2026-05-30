@@ -65,7 +65,7 @@ function bindEvents() {
   });
 
   ;["dragenter", "dragover"].forEach((name) => {
-    els.dropZone.addEventListener(name, (e) => {
+    document.addEventListener(name, (e) => {
       e.preventDefault();
       els.dropZone.classList.add("drag-over");
     });
@@ -78,7 +78,9 @@ function bindEvents() {
     });
   });
 
-  els.dropZone.addEventListener("drop", (e) => {
+  document.addEventListener("drop", (e) => {
+    e.preventDefault();
+    els.dropZone.classList.remove("drag-over");
     handleFileList(e.dataTransfer.files);
   });
 
