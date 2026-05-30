@@ -1,4 +1,4 @@
-const STORAGE_KEY = "txt_reader_state_v1";
+const STORAGE_KEY = "txt_reader_state_v2";
 
 const state = {
   documents: [],
