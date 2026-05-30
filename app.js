@@ -241,6 +241,26 @@ function getSelectedDoc() {
   return state.documents.find((d) => d.id === state.selectedId) || null;
 }
 
+function removeDocument(docId) {
+  const doc = state.documents.find((d) => d.id === docId);
+  if (!doc) return;
+
+  const wasSelected = state.selectedId === docId;
+
+  state.documents = state.documents.filter((d) => d.id !== docId);
+
+  ensureSampleIfEmpty();
+
+  if (wasSelected) {
+    state.selectedId = state.documents[0]?.id || null;
+    hydrateSelection();
+  }
+
+  state.isPlaying = false;
+  persist();
+  renderAll();
+}
+
 function renderAll() {
   renderLayout();
   renderDocList();
@@ -252,7 +272,6 @@ function renderAll() {
 function renderLayout() {
   els.app.classList.toggle("sidebar-collapsed", state.sidebarCollapsed);
 }
-
 function renderDocList() {
   const q = state.search;
   const docs = [...state.documents]
@@ -264,14 +283,35 @@ function renderDocList() {
   for (const doc of docs) {
     const li = document.createElement("li");
     li.className = `doc-item ${doc.id === state.selectedId ? "active" : ""}`;
-    li.innerHTML = `<h3>${escapeHtml(doc.title)}</h3><p>${escapeHtml(doc.content.slice(0, 92))}</p>`;
-    li.addEventListener("click", () => {
+
+    const content = document.createElement("div");
+    content.className = "doc-item-content";
+    content.innerHTML = `
+      <h3>${escapeHtml(doc.title)}</h3>
+      <p>${escapeHtml(doc.content.slice(0, 92))}</p>
+    `;
+
+    content.addEventListener("click", () => {
       state.selectedId = doc.id;
       state.isPlaying = false;
       hydrateSelection();
       persist();
       renderAll();
     });
+
+    const removeBtn = document.createElement("button");
+    removeBtn.className = "icon-btn doc-remove-btn";
+    removeBtn.type = "button";
+    removeBtn.title = "Remove document";
+    removeBtn.setAttribute("aria-label", "Remove document");
+    removeBtn.textContent = "✕";
+
+    removeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      removeDocument(doc.id);
+    });
+
+    li.append(content, removeBtn);
     els.docList.appendChild(li);
   }
 }
