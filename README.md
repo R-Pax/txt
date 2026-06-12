@@ -37,5 +37,4 @@ python3 -m http.server 4173
 
 ## Notes
 
-- Local persistence is stored in browser `localStorage`.
-- No backend is required for the current web version.
+- Local persistence is stored in browser using `localStorage`.
