@@ -7,7 +7,7 @@ I'm currently only interested on the web version since I feel like the idea of r
 ## What It Does
 
 - One-word-at-a-time reading flow
-- Red focus letter aligned to a center guide (ReedMax-inspired)
+- Red focus letter aligned to a center guide (ReadMax-inspired)
 - Adjustable speed (300-400 WPM is recommended)
 - Local persistence of documents, position, and settings
 
