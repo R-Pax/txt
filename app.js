@@ -148,14 +148,27 @@ async function handleFileList(fileList) {
 
 async function parseFile(file) {
   const ext = getExt(file.name);
+
   if (["txt", "md", "csv", "json"].includes(ext)) {
     const text = await file.text();
-    return ext === "json" ? textFromJson(text) : text;
+
+    if (ext === "json") {
+      return textFromJson(text);
+    }
+
+    if (ext === "md") {
+      return clearMarkdown(text);
+    }
+
+    return text;
   }
 
   if (ext === "docx") {
     const buffer = await file.arrayBuffer();
-    const result = await window.mammoth.extractRawText({ arrayBuffer: buffer });
+    const result = await window.mammoth.extractRawText({
+      arrayBuffer: buffer,
+    });
+
     return result.value || "";
   }
 
@@ -171,6 +184,26 @@ function textFromJson(raw) {
   } catch {
     return raw;
   }
+}
+
+function clearMarkdown(md) {
+	return md 
+	// heading markers
+	.replace(/^#{1,6}\s+/gm, "")
+	// list markers
+	.replace(/^(\s*[-*+]\s+)/gm, "")
+	// numbered list markers
+	.replace(/^(\s*\d+\.\s+)/gm, "")
+	// blockquote >
+    	.replace(/^>\s?/gm, "")
+    	// horizontal rules
+ 	.replace(/^-{3,}$/gm, "")
+    	// bold/italic markers
+    	.replace(/(\*\*|__|\*|_)/g, "")
+    	// extra 
+    	.replace(/\s+\n/g, "\n")
+    	.replace(/\n{3,}/g, "\n\n")
+    	.trim();
 }
 
 function collectStrings(value, bucket) {
