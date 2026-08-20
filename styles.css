@@ -6,7 +6,7 @@
   --text: #f2f2f4;
   --muted: #9a9aa0;
   --accent: #dbdbde;
-  --pivot: #d63b3b;
+  --pivot: #f53b2c;
 }
 
 * {
@@ -395,4 +395,6 @@ input[type="range"] {
   height: auto;
   display: block;
 }
-
+#speedSlider {
+  accent-color: var(--pivot);
+}
