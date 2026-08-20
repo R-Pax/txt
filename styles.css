@@ -66,9 +66,26 @@ body {
   border: 1px solid var(--line);
   background: var(--panel-soft);
   color: var(--text);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 7px 11px;
   cursor: pointer;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut)) 0,
+    100% var(--cut-h),
+    100% 100%,
+    0 100%
+  );
+}
+
+.icon-btn {
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut-sm)) 0,
+    100% var(--cut-sm-h),
+    100% 100%,
+    0 100%
+  );
 }
 
 .sidebar-close-btn {
@@ -80,6 +97,13 @@ body {
   place-items: center;
 }
 
+#playBtn {
+  background: var(--pivot);
+  border-color: var(--pivot);
+  color: #fff;
+  font-weight: 700;
+}
+
 .search-wrap input,
 input[type="range"] {
   width: 100%;
@@ -89,17 +113,31 @@ input[type="range"] {
   background: var(--panel-soft);
   color: var(--text);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 10px;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut)) 0,
+    100% var(--cut-h),
+    100% 100%,
+    0 100%
+  );
 }
 
 .drop-zone {
   border: 1px dashed #3a3a42;
-  border-radius: 8px;
+  border-radius: 0;
   padding: 12px;
   text-align: center;
   color: var(--muted);
   background: rgba(255, 255, 255, 0.02);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut)) 0,
+    100% var(--cut-h),
+    100% 100%,
+    0 100%
+  );
 }
 
 .drop-zone.drag-over {
@@ -124,16 +162,35 @@ input[type="range"] {
 }
 
 .doc-item {
+  position: relative;
   border: 1px solid var(--line);
   background: #0f0f11;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 10px 10px 10px 16px;
+  border-radius: 0;
   cursor: pointer;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut)) 0,
+    100% var(--cut-h),
+    100% 100%,
+    0 100%
+  );
 }
 
 .doc-item.active {
   border-color: #6f6f78;
   background: #151518;
+}
+
+.doc-item.active::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: var(--pivot);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--cut-sm-h)));
 }
 
 .doc-item h3 {
@@ -203,8 +260,19 @@ input[type="range"] {
 }
 
 .stats #wpmStat {
-  color: var(--accent);
+  display: inline-block;
+  margin-top: 4px;
+  padding: 3px 10px;
+  color: var(--bg);
+  background: var(--accent);
   font-weight: 700;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut-sm)) 0,
+    100% var(--cut-sm-h),
+    100% 100%,
+    0 100%
+  );
 }
 
 .focus-area {
@@ -218,10 +286,18 @@ input[type="range"] {
   min-height: 190px;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 0;
   display: grid;
   place-items: center;
   position: relative;
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--cut-h)) 0,
+    100% var(--cut),
+    100% 100%,
+    var(--cut-h) 100%,
+    0 calc(100% - var(--cut))
+  );
 }
 
 .center-line {
@@ -306,4 +382,24 @@ input[type="range"] {
   .reader {
     min-height: 58vh;
   }
+}
+
+.logo {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 96px;
+  height: auto;
+  display: block;
+}
+
+.logo-flag {
+  width: 12px;
+  height: 26px;
+  margin-left: 8px;
+  background: var(--pivot);
+  clip-path: polygon(0 0, 100% 100%, 0 100%);
 }
