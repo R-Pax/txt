@@ -1,4 +1,6 @@
-# txt
+<p align="center">
+  <img src="./txt.svg" alt="txt" width="160">
+</p>
 
 txt is a web speed-reading app with a minimalist black UI.
 
