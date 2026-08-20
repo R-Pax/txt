@@ -31,7 +31,6 @@ cd txt
 
 2. Start a local server:
 ```bash
-cd web
 python3 -m http.server 4173
 ```
 
