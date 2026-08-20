@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
+
 :root {
   --black: #070708;
   --panel: #131315;
@@ -21,7 +23,7 @@ body {
   height: 100%;
   background: var(--black);
   color: var(--text);
-  font-family: "Switzer", "Switzer", sans-serif;
+  font-family: "Archivo", sans-serif;
 }
 
 .app {
@@ -236,7 +238,7 @@ input[type="range"] {
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   width: min(720px, 100%);
-  font-family: "IBM Plex Mono", "SF Mono", monospace;
+  font-family: "Archivo", sans-serif;
   font-size: clamp(48px, 7vw, 86px);
   font-weight: 700;
   line-height: 1;
@@ -250,8 +252,6 @@ input[type="range"] {
 
 #pivot {
   color: var(--red);
-  width: 0.7em;
-  text-align: center;
 }
 
 #suffix {
