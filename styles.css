@@ -2,7 +2,7 @@
   --bg: #060708;
   --panel: #131315;
   --panel-soft: #1a1a1d;
-  --line: #f53b2c;
+  --line: #2a2a2e;
   --text: #f2f2f4;
   --muted: #9a9aa0;
   --accent: #dbdbde;
@@ -381,7 +381,7 @@ input[type="range"] {
 
   .reader {
     min-height: 58vh;
-  }
+}
 }
 
 .logo {
